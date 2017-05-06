@@ -7,6 +7,7 @@ var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
 
 var databaseUri = config.databaseUri || process.env.DATABASE_URI || process.env.MONGODB_URI;
+console.log(databaseUri);
 
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
@@ -49,8 +50,9 @@ app.get('/test', function(req, res) {
 */
 
 var port = config.port || process.env.PORT || 1337;
+var host = config.host || process.env.HOST || 'localhost';
 var httpServer = require('http').createServer(app);
-httpServer.listen(port, function() {
+httpServer.listen(port, host, function() {
     console.log('parse-server-example running on port ' + port + '.');
 });
 
